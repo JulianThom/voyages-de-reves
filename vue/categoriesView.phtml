@@ -1,0 +1,31 @@
+<?php include"globals/header.phtml" ?>
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+		<?php foreach ($allCategories as $key => $value): ?>
+			
+            <div class="col-md-4">
+          <h2><?php echo $value['nom']; ?></h2>
+          <p><?php echo $value['description']; ?></p>
+          <p><a class="btn btn-default" href="<?=ROOT?>listeCategories-<?php echo $value['id']; ?>" role="button">Voir les articles »</a></p>
+        </div>
+		<?php endforeach ?>
+            <hr>
+
+            <!-- Pager -->
+<!--             <ul class="pager">
+                <li class="previous">
+                    <a href="#">&larr; Articles précédents</a>
+                </li>
+                <li class="next">
+                    <a href="#">Articles suivants &rarr;</a>
+                </li>
+            </ul> -->
+        </div>
+
+   
+  <?php include"globals/sidebar.phtml" ?>
+  <?php include"globals/footer.phtml" ?>

@@ -1,0 +1,33 @@
+
+<?php include"globals/header.phtml" ?>
+<!-- Page Content -->
+<div class="container">
+
+  <form class="form-signin" method="POST"  action"index.php?page=login">
+    <h2 class="form-signin-heading">Administration du blog</h2>
+    <label for="login" class="sr-only">Nom d'utilisateur</label>
+    <input type="text" name="login" id="login" class="form-control" placeholder="Nom d'utilisateur" autofocus="">
+    <?php if (array_key_exists("login", $erreurs)) {
+        echo '<p class="alert alert-danger">'.$erreurs['login'].'</p>';
+    } ?>
+    <label for="password" class="sr-only">Mot de passe</label>
+    <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe">
+    <?php if (array_key_exists("password", $erreurs)) {
+        echo '<p class="alert alert-danger">'.$erreurs['password'].'</p>';
+    } ?>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="remember-me"> Se souvenir de moi
+    </label>
+</div>
+<button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+<p></p>
+<?php if (isset($infoFormAdmin) && $infoFormAdmin==true) {
+    echo '<p class="alert alert-success alert-block">Connexion réussie.</p>';
+    }
+    else if(isset($erreurs['empty'])){
+        echo '<p class="alert alert-danger">'.$erreurs['empty'].'</p>';
+    }
+     ?>
+</form>
+</div>

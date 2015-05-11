@@ -1,0 +1,36 @@
+
+<?php include"globals/header.phtml" ?>
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+         <div class="jumbotron">
+            <h1>Statistiques</h1>
+            <p class="lead">Ici, retrouver toutes les statistiques du Blog "Voyages de rêves"</p>
+<!--                     <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p> -->
+            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-circle-arrow-left"></span> <a href="<?=ROOT?>dashboard">Revenir au Dashboard</a></button>
+        </div>
+        <div class="col-lg-6">
+          <h4>Nombre d'article</h4>
+          <p>Il y a un total de <?php echo $nbreArticle[0] ?> articles.</p>
+            <br>
+          <h4>Nombre de catégorie</h4>
+          <p>Il y a un total de <?php echo $nbreCategories[0] ?> categories.</p>
+            <br>
+          <h4>Meilleur article</h4>
+          <p>L'article le mieux noté est : <a href="<?=ROOT?>article-<?php echo $bestArticle['id_article']; ?>"><?php echo $bestArticle['titre'] ?></a>.</p>
+            <br>
+          <h4>Meilleure catégorie</h4>
+          <p>La catégorie la mieux noté est : <a href="<?=ROOT?>listeCategories-<?php echo $bestCategorie['id_categorie']; ?>"><?php echo $bestCategorie['nom'] ?></a>.</p>
+            <br>
+          <h4>Nombre d'article par catégorie</h4>
+          <p>Il y a environ <?php echo round($nbreArticle[0]/$nbreCategories[0]) ?> articles par catégorie.</p>          
+      </div>
+      <hr>
+  </div>
+  <?php include"globals/sidebar.phtml" ?>
+  <?php include"globals/footer.phtml" ?>

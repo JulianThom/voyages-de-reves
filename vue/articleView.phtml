@@ -1,0 +1,94 @@
+<?php include"globals/header.phtml" ?>
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Post Content Column -->
+        <div class="col-lg-8">
+            <?php if (isConnected()==true): ?>
+<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-circle-arrow-left"></span> <a href="<?=ROOT?>dashboard">Revenir au Dashboard</a></button>
+            <?php endif ?>
+            <!-- Blog Post -->
+            <!-- Title -->
+            <h1><?php echo $articleChoisi['titre']; ?></h1>
+
+            <!-- Author -->
+            <p>
+              <span class="glyphicon glyphicon-pencil"></span> Rédigé par : <a href="<?=ROOT?>listeAuteurs-<?php echo $articleChoisi['id_auteur']; ?>"><?php echo $articleChoisi['auteurName']; ?></a>
+            </p>
+         <p> <span class="glyphicon glyphicon-th-list"></span> Catégorie : <a href="<?=ROOT?>listeCategories-<?php echo $articleChoisi['id_categorie']; ?>"><?php echo $articleChoisi['catName']; ?></a></p>
+            <!-- Date/Time -->
+            <p><span class="glyphicon glyphicon-time"></span> Posté le <?php echo date('d-m-Y \à\ H:i:s', strtotime($articleChoisi['date_ajout'])); ?></p>
+
+
+            <!-- Preview Image -->
+            <img class="img-responsive" src="<?=ROOT_IMG?><?php echo $articleChoisi['image']; ?>" alt="">
+            <p></p>
+            <!-- Post Content -->
+            <p class="lead"><?php echo $articleChoisi['description']; ?>
+            <p></p>
+            
+            <p></p>
+                <!-- Blog Comments -->
+
+                <!-- Comments Form -->
+                <div class="well">
+                    <h4>Laissez un commentaire :</h4>
+                    <form id="formCommentaire" role="form" method="POST">
+                        <div class="form-group">
+                            <label for="">Votre nom</label>
+                            <input id="nom" name="nom" class="form-control" rows="3">
+                            <p></p>
+                            <?php 
+                            if (array_key_exists("nom", $erreurs)) {
+                                echo '<p class="alert alert-danger">'.$erreurs['nom'].'</p>';
+                            } ?>
+                            <label for="">Noter l'article</label>
+                            <div id="raty"></div> 
+                            <p></p>     
+                            <?php 
+                            if (array_key_exists("note", $erreurs)) {
+                                echo '<div class="alert alert-danger">'.$erreurs['note'].'</div>';
+                            } ?>              
+                            <label for="">Votre message</label>             
+                            <textarea id="message" name="message" class="form-control" rows="3"></textarea>
+                            <p></p>
+                            <?php 
+                            if (array_key_exists("message", $erreurs)) {
+                                echo '<p class="alert alert-danger">'.$erreurs['message'].'</p>';
+                            } ?>
+                        </div>
+                        <button id="btnEnvoyer" type="submit" class="btn btn-primary">Envoyer</button> 
+                        <p></p>
+                        <?php 
+                        if (isset($successAddCommentaire) && $successAddCommentaire==true) {
+                            echo '<p class="alert alert-success alert-block">Votre commentaire a été ajouté.</p>';
+                        }
+                        ?>
+                    </form>
+                </div>
+
+
+                <!-- Posted Comments -->
+                <!-- Comment -->
+                <div id="allCommentaire">
+                <?php foreach ($allCommentaires as $key => $value): ?>
+                <div class="media">
+                    <a class="pull-left" href="#">
+
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><?php echo $value['user']; ?>
+                            <small><?php echo "a posté le ".date('d-m-Y \à\ H:i:s', strtotime($value['date_commentaire'])); ?></small>
+                        </h4>
+                        <div class="ratyCommentaire" data-number="<?php echo $value['note']; ?>"></div> 
+                        <?php echo $value['contenu']; ?>
+                    </div>
+                </div>
+                <?php endforeach ?> 
+                </div>
+        </div>
+        <hr>
+        <?php include"globals/sidebar.phtml" ?>
+        <?php include"globals/footer.phtml" ?>

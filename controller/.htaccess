@@ -1,0 +1,2 @@
+#Restriction d'accès à tout les fichiers (Forbidden)
+deny from all

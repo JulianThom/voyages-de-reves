@@ -1,0 +1,48 @@
+
+<?php include"globals/header.phtml" ?>
+<!-- Page Content -->
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+     <div class="jumbotron">
+      <h1>Ajouter une catégorie</h1>
+      <p class="lead">Vous pouvez ajouter simplement une catégorie au Blog.<br>Tous les champs doivent être remplis.</p>
+      <!--         <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p> -->
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-circle-arrow-left"></span> <a href="<?=ROOT?>dashboard">Revenir au Dashboard</a></button> 
+    </div>
+    <div class="col-lg-12">
+      <form method="POST" action="<?=ROOT?>ajoutCategorie" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="nom" placeholder="Nom de la catégorie">
+        </div>
+        <?php 
+          if (array_key_exists("nom", $erreurs)) {
+              echo '<p class="alert alert-danger">'.$erreurs['nom'].'</p>';
+          } ?>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea type="text" class="form-control" cols="30" rows="3" name="description" id="description" placeholder="Description de la catégorie"></textarea>
+        </div>
+        <?php 
+          if (array_key_exists("description", $erreurs)) {
+              echo '<p class="alert alert-danger">'.$erreurs['description'].'</p>';
+          } ?>        
+        <p></p>
+        <button type="submit" class="btn btn-primary"><span class=" glyphicon glyphicon-plus-sign"></span> Ajouter</button>
+        <p></p>
+        <?php 
+        if (isset($successAddCategorie) && $successAddCategorie==true) {
+            echo '<p class="alert alert-success alert-block">Votre catégorie a bien été ajouté.</p>';
+        }
+        ?>        
+      </form>          
+    </div>
+
+  </div>
+  <?php include"globals/sidebar.phtml" ?>
+  <?php include"globals/footer.phtml" ?>

@@ -1,0 +1,71 @@
+
+<?php include"globals/header.phtml" ?>
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+            <h1 class="page-header">
+                Voyages de rêves
+                <small></small>
+            </h1>
+
+            <!-- Blog Post -->
+            <?php foreach ($allArticles as $key => $value): ?>            
+            <h2>
+                <a href="<?=ROOT?>article-<?php echo $value['id']; ?>"><?php echo $value['titre']; ?></a>
+            </h2>
+                    
+                <?php if ($value['noteMoyenne']>=3.5): ?>
+                    <span class="label label-warning"><span class="glyphicon glyphicon-star"></span> Top article</span>
+                <?php endif ?>
+           <p></p>
+            <p>
+              <span class="glyphicon glyphicon-pencil"></span> Rédigé par : <a href="<?=ROOT?>listeAuteurs-<?php echo $value['id_auteur']; ?>"><?php echo $value['nom']; ?></a>
+            </p>
+            <p> <span class="glyphicon glyphicon-th-list"></span> Catégorie : <a href="<?=ROOT?>listeCategories-<?php echo $value['id_categorie']; ?>"><?php echo $value['nom_categorie']; ?></a></p>
+            <p><span class="glyphicon glyphicon-time"></span> Posté le <?php echo date('d-m-Y \à\ H:i:s', strtotime($value['date_ajout'])); ?></p>
+            <img class="img-responsive" src="<?=ROOT_IMG?><?php echo $value['image']; ?>" alt="">
+            <p></p>
+            <p><?php echo getLittleDescription($value['description']); ?></p>
+                    
+                  <span class="glyphicon glyphicon-comment"></span>
+                  <?php echo $value['nbCom']; ?>
+             <p></p>
+            <a class="btn btn-primary" href="<?=ROOT?>article-<?php echo $value['id']; ?>">En savoir plus <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <hr>
+        <?php endforeach ?>
+
+        <!-- Pager -->
+        <nav>
+            <ul class="pagination pagination-sm">           
+                <?php 
+                $nbPage=ceil($nbreArticle[0]/3);
+                $i=1;
+                for ($i; $i<=$nbPage; $i++): ?>
+                    <?php if($paginationPage == $i) : ?>
+                        <li class="active">
+                    <?php else : ?>
+                        <li>
+                    <?php endif; ?>
+
+                    <!-- <li class="<?php //echo ($paginationPage == $i ? 'active' : '') ?>"> -->
+                        <a href="<?=ROOT?>page<?php echo $i;?>"><?php echo$i;?></a>
+                    </li>
+            <?php endfor ?>     
+        </ul>
+    </nav>
+<!--     <ul class="pager">
+        <li class="previous">
+            <a href="#">&larr; Articles précédents</a>
+        </li>
+        <li class="next">
+            <a href="#">Articles suivants &rarr;</a>
+        </li>
+    </ul> -->
+</div>
+<?php include"globals/sidebar.phtml" ?>
+<?php include"globals/footer.phtml" ?>

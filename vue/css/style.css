@@ -1,0 +1,51 @@
+#resultatRecherche{
+	background-color: #272B30;
+	list-style-type:none; 
+	width: 100%;
+	margin-top: 0px;
+	padding-left: 10px;	
+/*	margin-right: 40px;*/
+}
+
+#resultatRecherche li{
+padding-top: 10px;
+}
+
+#resultatRecherche li:last-child{
+padding-bottom: 10px;
+}
+
+#login{
+	margin-bottom: 10px;
+}
+
+#password{
+	margin-bottom: 10px;
+}
+
+.form-signin{
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+h2{
+	font-size: 27px;
+}
+
+.lead{
+	font-size: 15px;
+}
+
+.jumbotron h1{
+	font-size: 36px;
+}
+
+.jumbotron {
+padding: 20px 0;
+}
+
+.badge{
+	font-weight: 400;
+	font-size: 12px;
+}

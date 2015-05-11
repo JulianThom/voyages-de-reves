@@ -1,0 +1,36 @@
+<!-- Footer -->
+<footer>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>Copyright &copy;  Voyages de rêves - Avril 2015</p>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</footer>
+
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="<?=ROOT_JS?>jquery.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="<?=ROOT_JS?>timepicker.js"></script>
+<script src="<?=ROOT_JS?>raty-2.7.0/lib/jquery.raty.js"></script>   
+<script src="<?=ROOT_JS?>app.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="<?=ROOT_JS?>bootstrap.min.js"></script>      
+
+<!-- Calendrier date pour l'ajout d'article -->
+<script>
+  $(document).ready(function(){
+    $( "#datepicker" ).datetimepicker({
+    	dateFormat: "yy-mm-dd",
+      timeFormat: 'HH:mm:ss'
+    });
+  });
+  </script>
+</body>
+
+</html>

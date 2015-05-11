@@ -1,0 +1,74 @@
+
+<?php include"globals/header.phtml" ?>
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+           <div class="jumbotron">
+      <h1>Dashboard</h1>
+      <p class="lead">Bienvenue <?php echo $user['login'] ?>.<br>Ajouter, modifier, supprimer, tous les articles du blog.
+      <!--         <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p> -->
+    </div>
+    <div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-plus"></span> Ajouter <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="<?=ROOT?>ajoutArticle">Un article</a></li>
+    <li><a href="<?=ROOT?>ajoutAuteur">Un auteur</a></li>
+<!--         <li class="divider"></li> -->
+    <li><a href="<?=ROOT?>ajoutCategorie">Une catégorie</a></li>
+  </ul>
+</div>
+<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-stats"></span> <a href="<?=ROOT?>stats">Stats</a></button>
+<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope"></span> <a href="<?=ROOT?>messagesDashboard">Messages</a> <span class="badge"><?php echo $nbreMessages['nbMessage'] ?></span></button>
+<p></p>
+<table class="table table-striped table-bordered table-hover">
+    <tbody><tr>
+        <th>Nom de l'article</th>
+        <th>Catégorie</th>
+        <th>Auteur</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+    </tbody><tbody>
+    <?php foreach ($allArticles as $key => $value): ?>
+           <tr> <td><?php echo $value['titre'] ?></td><td><?php echo $value['nom_categorie'] ?></td><td><?php echo $value['nom_auteur'] ?></td><td><?php echo getLittleDescription($value['description']) ?></td><td><a class="btn btn-xs btn-info glyphicon glyphicon-eye-open" href="<?=ROOT?>article-<?php echo $value['id']; ?>"></a>&nbsp;
+                  <a class="btn btn-xs btn-primary glyphicon glyphicon-open-file" href="<?=ROOT?>updateArticle-<?php echo $value['id']; ?>"></a>
+                  <a class="btn btn-xs btn-danger glyphicon glyphicon-trash" href="#"></a>
+              </td></tr> 
+        <?php endforeach ?>   </tbody>
+    </table>
+
+        <!-- Pager -->
+        <nav>
+            <ul class="pagination pagination-sm">           
+                <?php 
+                $nbPage=ceil($nbreArticle[0]/4);
+                $i=1;
+                for ($i; $i<=$nbPage; $i++): ?>
+                    <?php if($paginationPage == $i) : ?>
+                        <li class="active">
+                    <?php else : ?>
+                        <li>
+                    <?php endif; ?>
+
+                    <!-- <li class="<?php //echo ($paginationPage == $i ? 'active' : '') ?>"> -->
+                        <a href="<?=ROOT?>pageDashboard<?php echo $i;?>"><?php echo$i;?></a>
+                    </li>
+            <?php endfor ?>     
+        </ul>
+    </nav>
+<!--     <ul class="pager">
+        <li class="previous">
+            <a href="#">&larr; Articles précédents</a>
+        </li>
+        <li class="next">
+            <a href="#">Articles suivants &rarr;</a>
+        </li>
+    </ul> -->
+</div>
+<?php include"globals/sidebar.phtml" ?>
+<?php include"globals/footer.phtml" ?>

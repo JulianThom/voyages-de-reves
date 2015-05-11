@@ -1,0 +1,93 @@
+
+<?php include"globals/header.phtml" ?>
+<!-- Page Content -->
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+     <div class="jumbotron">
+      <h1>Ajouter un article</h1>
+      <p class="lead">Vous pouvez ajouter simplement un article au Blog.<br>Tous les champs doivent être remplis.</p>
+      <!--         <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p> -->
+          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-circle-arrow-left"></span> <a href="<?=ROOT?>dashboard">Revenir au Dashboard</a></button>
+    </div>
+
+    <p></p>
+    <div class="col-lg-12">
+      <form method="POST" action="<?=ROOT?>ajoutArticle" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="titre">Titre</label>
+          <input type="text" class="form-control" name="titre" id="titre" placeholder="Titre de l'article">
+        </div>
+        <?php 
+          if (array_key_exists("titre", $erreurs)) {
+              echo '<p class="alert alert-danger">'.$erreurs['titre'].'</p>';
+          } ?>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea type="text" class="form-control" cols="30" rows="5" name="description" id="description" placeholder="Description de l'article"></textarea>
+        </div>
+        <?php 
+          if (array_key_exists("description", $erreurs)) {
+              echo '<p class="alert alert-danger">'.$erreurs['description'].'</p>';
+          } ?>        
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input name="date" class="form-control" type="text" id="datepicker">
+<!--           <input class="form-control" type="date" id="date"> -->
+        </div>
+         <?php 
+          if (array_key_exists("date", $erreurs)) {
+              echo '<p class="alert alert-danger">'.$erreurs['date'].'</p>';
+          } ?>        
+        <label for="auteur">Auteur</label>
+        <select class="form-control" name="auteur" id="auteur">
+         <option value="">Sélectionner un auteur</option> 
+        <?php foreach ($recupAuteur as $key => $value): ?>
+           <option value="<?php echo $value['id'] ?>"><?php echo $value['nom'] ?></option>
+         <?php endforeach ?>
+        </select>
+        <p></p>
+         <?php 
+          if (array_key_exists("auteur", $erreurs)) {
+              echo '<p class="alert alert-danger">'.$erreurs['auteur'].'</p>';
+          } ?>          
+        <p></p>
+        <div class="form-group">
+    <label for="image">Choisir une image</label>
+         
+    <input type="file" name="image" id="image"><div><?php echo $_FILES["image"]['name'] ?></div>
+    <p class="help-block">Format : JPG ou PNG.<br>Dimension : 900x300px.<br>Taille : inférieure à 2mo.</p>
+  </div>
+  <?php 
+          if (array_key_exists("image", $erreurs)) {
+              echo '<p class="alert alert-danger">'.$erreurs['image'].'</p>';
+          } ?>  
+        <label for="categories">Catégories</label>
+        <select class="form-control"name="categories" id="categories">
+          <option value="">Sélectionner une catégorie</option> 
+          <?php foreach ($recupCategorie as $key => $value): ?>
+           <option value="<?php echo $value['id'] ?>"><?php echo $value['nom'] ?></option>
+         <?php endforeach ?>
+         </select> 
+        <p></p>
+         <?php 
+          if (array_key_exists("categories", $erreurs)) {
+              echo '<p class="alert alert-danger">'.$erreurs['categories'].'</p>';
+          } ?>         
+        <button type="submit" class="btn btn-primary"><span class=" glyphicon glyphicon-plus-sign"></span> Ajouter</button>
+        <p></p>
+        <?php 
+        if (isset($successAddArticle) && $successAddArticle==true) {
+            echo '<p class="alert alert-success alert-block">Votre article a bien été ajouté.</p>';
+        }
+        ?>        
+      </form>          
+    </div>
+
+  </div>
+  <?php include"globals/sidebar.phtml" ?>
+  <?php include"globals/footer.phtml" ?>

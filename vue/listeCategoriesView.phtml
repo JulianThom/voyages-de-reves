@@ -1,0 +1,40 @@
+<?php include"globals/header.phtml" ?>
+<div class="container">
+
+	<div class="row">
+
+		<!-- Blog Entries Column -->
+		<div class="col-md-8">
+			<?php if (empty($allArticles)): ?>
+					<h2>Cette catégorie ne contient pas encore d'articles.</h2>
+
+			
+				
+	<?php else:
+			foreach ($allArticles as $key => $value): ?>
+				
+			<div class="col-lg-4">
+				<img class="img-circle" src="<?=ROOT_IMG?>/<?php echo $value['image']; ?>" width="140" height="140">
+				<h2><?php echo $value['titre']; ?></h2>
+				<p><?php echo getLittleDescription($value['description']); ?></p>
+				<p><a class="btn btn-default" href="<?=ROOT?>article-<?php echo $value['id']; ?>" role="button">En savoir plus »</a></p>
+<p></p>
+			</div>
+			<?php endforeach ?>
+			<?php endif ?>
+			<hr>
+
+			<!-- Pager -->
+<!--             <ul class="pager">
+                <li class="previous">
+                    <a href="#">&larr; Articles précédents</a>
+                </li>
+                <li class="next">
+                    <a href="#">Articles suivants &rarr;</a>
+                </li>
+            </ul> -->
+        </div>
+
+
+        <?php include"globals/sidebar.phtml" ?>
+        <?php include"globals/footer.phtml" ?>

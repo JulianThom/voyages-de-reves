@@ -1,0 +1,32 @@
+<?php include"globals/header.phtml" ?>
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+		<?php foreach ($allAuteurs as $key => $value): ?>
+			
+            <div class="col-lg-4">
+              <img class="img-circle" src="<?=ROOT_IMG?><?php echo $value['image']; ?>" width="140" height="140">
+          <h2><?php echo $value['nom']; ?></h2>
+          <p><?php echo $value['description']; ?></p>
+          <p><a class="btn btn-default" href="<?=ROOT?>listeAuteurs-<?php echo $value['id']; ?>" role="button">Voir tous ses articles »</a></p>
+        </div>
+		<?php endforeach ?>
+
+
+            <!-- Pager -->
+<!--             <ul class="pager">
+                <li class="previous">
+                    <a href="#">&larr; Articles précédents</a>
+                </li>
+                <li class="next">
+                    <a href="#">Articles suivants &rarr;</a>
+                </li>
+            </ul> -->
+        </div>
+
+   
+  <?php include"globals/sidebar.phtml" ?>
+  <?php include"globals/footer.phtml" ?>
